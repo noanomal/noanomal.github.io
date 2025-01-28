@@ -7,7 +7,7 @@
   "bugs": "https://github.com/just-the-docs/just-the-docs/issues",
   "devDependencies": {
     "@notionhq/client": "^2.2.15",
-    "aws-sdk": "^2.1668.0",
+    "aws-sdk": "^2.1692.0",
     "moment": "^2.30.0",
     "moment-timezone": "^0.5.45",
     "notion-to-md": "^3.1.1",
