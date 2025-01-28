@@ -9,7 +9,7 @@
     "@notionhq/client": "^2.2.15",
     "aws-sdk": "^2.1668.0",
     "moment": "^2.30.0",
-    "moment-timezone": "^0.5.45",
+    "moment-timezone": "^0.5.47",
     "notion-to-md": "^3.1.1",
     "npm-run-all": "^4.1.5",
     "prettier": "^3.0.3",
