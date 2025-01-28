@@ -15,7 +15,7 @@
     "prettier": "^3.0.3",
     "sharp": "^0.32.6",
     "sitemap": "^8.0.0",
-    "stylelint": "^15.11.0",
+    "stylelint": "^16.14.1",
     "stylelint-config-standard-scss": "^11.0.0"
   },
   "scripts": {
