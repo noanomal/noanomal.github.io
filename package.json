@@ -16,7 +16,7 @@
     "sharp": "^0.32.6",
     "sitemap": "^8.0.0",
     "stylelint": "^15.11.0",
-    "stylelint-config-standard-scss": "^11.0.0"
+    "stylelint-config-standard-scss": "^14.0.0"
   },
   "scripts": {
     "notion": "node _scripts/notion-import.js",
