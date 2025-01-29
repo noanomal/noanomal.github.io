@@ -1,4 +1,5 @@
 ---
+layout: null
 ---
 (function (jtd, undefined) {
 
@@ -38,8 +39,8 @@ function initNav() {
   const siteNav = document.getElementById('site-nav');
   const mainHeader = document.getElementById('main-header');
   const menuButton = document.getElementById('menu-button');
-  
-  // disableHeadStyleSheets();
+
+  disableHeadStyleSheets();
 
   jtd.addEvent(menuButton, 'click', function(e){
     e.preventDefault();
@@ -69,12 +70,12 @@ function initNav() {
 }
 
 // The <head> element is assumed to include the following stylesheets:
-// 0. a <link> to /assets/css/just-the-docs-default.css
-// 1. a <link> to /assets/css/just-the-docs-head-nav.css
-// 2. a <style> containing the result of _includes/css/activation.scss.liquid.
-// It also includes any styles provided by users in _includes/head_custom.html.
-// Stylesheet 2 may be missing (compression can remove empty <style> elements)
-// so disableHeadStyleSheet() needs to access it by its id.
+// - a <link> to /assets/css/just-the-docs-head-nav.css,
+//             with id 'jtd-head-nav-stylesheet'
+// - a <style> containing the result of _includes/css/activation.scss.liquid.
+// To avoid relying on the order of stylesheets (which can change with HTML
+// compression, user-added JavaScript, and other side effects), stylesheets
+// are only interacted with via ID
 
 function disableHeadStyleSheets() {
   const headNav = document.getElementById('jtd-head-nav-stylesheet');
@@ -102,7 +103,6 @@ function initSearch() {
       lunr.tokenizer.separator = {{ site.search.tokenizer_separator | default: site.search_tokenizer_separator | default: "/[\s\-/]+/" }}
 
       var index = lunr(function(){
-        this.use(lunr.multiLanguage('en', 'ko'));
         this.ref('id');
         this.field('title', { boost: 200 });
         this.field('content', { boost: 2 });
@@ -145,6 +145,18 @@ function searchLoaded(index, docs) {
   var mainHeader = document.getElementById('main-header');
   var currentInput;
   var currentSearchIndex = 0;
+
+  {%- if site.search.focus_shortcut_key %}
+  // add event listener on ctrl + <focus_shortcut_key> for showing the search input
+  jtd.addEvent(document, 'keydown', function (e) {
+    if ((e.ctrlKey || e.metaKey) && e.key === '{{ site.search.focus_shortcut_key }}') {
+      e.preventDefault();
+
+      mainHeader.classList.add('nav-open');
+      searchInput.focus();
+    }
+  });
+  {%- endif %}
 
   function showSearch() {
     document.documentElement.classList.add('search-active');
@@ -378,7 +390,7 @@ function searchLoaded(index, docs) {
       {%- if site.search.rel_url != false %}
       var resultRelUrl = document.createElement('span');
       resultRelUrl.classList.add('search-result-rel-url');
-      resultRelUrl.innerText = decodeURIComponent(doc.relUrl);
+      resultRelUrl.innerText = doc.relUrl;
       resultTitle.appendChild(resultRelUrl);
       {%- endif %}
     }
@@ -472,12 +484,44 @@ function searchLoaded(index, docs) {
 }
 {%- endif %}
 
+// Switch theme
+
+jtd.getTheme = function() {
+  var cssFileHref = document.querySelector('[rel="stylesheet"]').getAttribute('href');
+  return cssFileHref.substring(cssFileHref.lastIndexOf('-') + 1, cssFileHref.length - 4);
+}
+
+jtd.setTheme = function(theme) {
+  var cssFile = document.querySelector('[rel="stylesheet"]');
+  cssFile.setAttribute('href', '{{ "assets/css/just-the-docs-" | relative_url }}' + theme + '.css');
+}
+
+// Note: pathname can have a trailing slash on a local jekyll server
+// and not have the slash on GitHub Pages
+
 function navLink() {
-  var href = document.location.pathname;
-  if (href.endsWith('/') && href != '/') {
-    href = href.slice(0, -1);
+  var pathname = document.location.pathname;
+
+  var navLink = document.getElementById('site-nav').querySelector('a[href="' + pathname + '"]');
+  if (navLink) {
+    return navLink;
   }
-  return document.getElementById('site-nav').querySelector('a[href="' + href + '"], a[href="' + href + '/"]');
+
+  // The `permalink` setting may produce navigation links whose `href` ends with `/` or `.html`.
+  // To find these links when `/` is omitted from or added to pathname, or `.html` is omitted:
+
+  if (pathname.endsWith('/') && pathname != '/') {
+    pathname = pathname.slice(0, -1);
+  }
+
+  if (pathname != '/') {
+    navLink = document.getElementById('site-nav').querySelector('a[href="' + pathname + '"], a[href="' + pathname + '/"], a[href="' + pathname + '.html"]');
+    if (navLink) {
+      return navLink;
+    }
+  }
+
+  return null; // avoids `undefined`
 }
 
 // Scroll site-nav to ensure the link to the current page is visible
@@ -485,9 +529,8 @@ function navLink() {
 function scrollNav() {
   const targetLink = navLink();
   if (targetLink) {
-    const rect = targetLink.getBoundingClientRect();
-    document.getElementById('site-nav').scrollBy(0, rect.top - 3*rect.height);
-    targetLink.classList.add('disabled')
+    targetLink.scrollIntoView({ block: "center" });
+    targetLink.removeAttribute('href');
   }
 }
 
@@ -510,44 +553,17 @@ function activateNav() {
   }
 }
 
-function tagManager() {
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  {% for ga_property in ga_tracking_ids %}
-  gtag('config', '{{ ga_property }}'{% unless site.ga_tracking_anonymize_ip == nil %}, { 'anonymize_ip': true }{% endunless %});
-  {% endfor %}
-}
-
-function loadScript(url) {
-  return new Promise((resolve, reject) => {
-    var script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = url;
-    script.defer = true;
-    script.onload = resolve;
-    script.onerror = () => reject(`스크립트 로드 중에 오류가 발생했습니다: ${url}`);
-    document.head.appendChild(script);
-  });
-}
+// Document ready
 
 jtd.onReady(function(){
-  hljs.highlightAll();
-  initNav();
+  if (document.getElementById('site-nav')) {
+    initNav();
+    activateNav();
+    scrollNav();
+  }
+  {%- if site.search_enabled != false %}
   initSearch();
-  activateNav();
-  scrollNav();
-  {%- if site.ga_tracking != nil %}
-  {% assign ga_tracking_ids = site.ga_tracking | split: "," %}
-    loadScript('https://www.googletagmanager.com/gtag/js?id={{ ga_tracking_ids.first }}')
-    tagManager();
   {%- endif %}
-  window.onload = setTimeout(() => {
-    document.querySelectorAll(".skeleton_loading").forEach(element => {
-      element.classList.toggle("fade")
-    })
-  }, 300)
 });
 
 // Copy button on code
