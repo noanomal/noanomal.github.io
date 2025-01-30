@@ -126,8 +126,8 @@ nav_sort: case_sensitive # Capital letters sorted before lowercase
 
 # External navigation links
 nav_external_links:
-  - title: Just the Docs on GitHub
-    url: https://github.com/just-the-docs/just-the-docs
+  - title: no anomalies on GitHub
+    url: https://github.com/noanomal/noanomal.github.io
 
 # Show navigation error report
 nav_error_report: true # default is false/nil.
