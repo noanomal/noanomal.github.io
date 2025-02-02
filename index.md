@@ -1,9 +1,7 @@
 ---
-title: Home
 layout: home
-nav_order: 1
-description: "Just the Docs is a responsive Jekyll theme with built-in search that is easily customizable and hosted on GitHub Pages."
 permalink: /
 ---
-
-# On construction...
+I created this blog to clear away even a small part of the clouds in my mind that block my view each week.
+{: .text-center }
+![main](/images/main.jpg)
