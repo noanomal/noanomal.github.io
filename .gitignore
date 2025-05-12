@@ -30,4 +30,4 @@ node_modules
 .ruby-version
 
 # do not upload korean contents
-korean*
+zkorean*
