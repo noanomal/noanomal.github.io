@@ -1,7 +1,121 @@
 ---
-title: 알고리즘 베이직
+title: 알고리즘 기초
 nav_order: 1
 ---
 
-stable matching(stable marriage) problem
-self enforcement agreement
+
+## computational tractability(계산 취급용이성, 계산 추적성)
+
+### 학습목표
+알고리즘이 단순히 이론적으로 올바른지를 넘어서, 실제 문제 해결에 사용할 수 있을 만큼 효율적인지(tractability)를 판단할 수 있는 실용적인 관점을 기르것 입니다.
+
+현재 사용 가능한 컴퓨터 성능으로 알고리즘을 실제로 실행할 수 있고 실용적으로 활용할 수 있는지를 판단하려면, 입력 크기가 커질 때 계산 시간과 메모리 사용량이 어떻게 변하는지를 분석해야 합니다. 이러한 관계를 분석하는 것이 **computational tractability(계산 취급용이성)** 의 핵심입니다.
+
+
+### Running time
+알고리즘의 효율성을 평가할 때 가장 중요한 요소 중 하나는 **실행 시간(running time)** 입니다. 특히, 입력 크기가 커질수록 알고리즘이 얼마나 느려지는지를 예측하는 것이 중요합니다. 이때 사용하는 개념이 바로 **running time** 입니다.
+
+Running time bound는 알고리즘이 문제를 해결하는 데 걸리는 시간의 상한을 수학적으로 표현한 것입니다. 보통 **입력 크기(n)** 에 따라 알고리즘이 얼마나 빠르게(또는 느리게) 작동하는지를 분석할 때 사용합니다. Running timed은 주로 `Best case`, `Average case`,`Worst case`를 측정하여 효율성을 평가하고, 실 사용에서는 `Worst case`를 참고 합니다.
+
+```
+알고리즘을 설계할 때 가장 중요한 건 효율성입니다. 그냥 문제를 푸는 게 아니라, 어떻게 하면 더 빠르고 자원을 덜 쓰면서 풀 수 있을까? 이걸 고민하는 거죠.
+
+그리고 꼭 새로운 알고리즘을 만들어야만 하는 건 아닙니다. 오히려 우리가 수업에서 다루는 건 전형적인 문제들이에요. 이런 문제들을 통해 기본적인 아이디어와 설계 패턴을 익히는 게 목적입니다.
+
+실제로 많은 문제들이 경우의 수가 엄청나게 많고, 그만큼 탐색해야 할 공간도 큽니다. 그래서 단순히 모든 경우를 다 시도하는 게 아니라, 어떻게 효율적으로 찾아갈지가 중요합니다.
+```
+
+## efficiency
+### 설명
+알고리즘이 효율적이라는 것은, 실제로 구현했을 때 실제 입력값에 대해 빠르게 실행되는 경우를 말합니다.
+
+단, 빠르게 실행되는 것을 입증할때 주로 간과하는 부분이 있으며, 이는 실행되는 환경과 입력값의 범위 입니다.
+
+보통 효율성은 속도(시간) 와 공간 사용량(메모리) 을 중심으로 이야기합니다.
+### 효율성 평가조건
+#### platform-independent
+효율성 평가는 특정 컴퓨터나 운영체제에 의존하지 않아야 합니다. 하드웨어 성능 차이와 무관하게 알고리즘의 일반적인 성능을 따져야 합니다.
+
+#### instance-independent
+알고리즘의 효율성은 특정한 입력 케이스에만 좋은지, 아니면 모든 입력에 대해 좋은지가 중요합니다. 그래서 보통 최악의 경우, 평균적인 경우, 최선의 경우를 나눠서 분석합니다.
+
+#### predictive with respect to increasing input sizes
+입력 데이터의 크기가 커질수록 떄 동작 시간과 자원 사용량을 계산 할 수 있게 안내할 수 있어야 합니다.
+
+### 효율성 평가 예시
+#### Insertion Sort 효율성 계산하기
+Insertion Sort를 파이썬을 통해 구현한 코드는 아래와 같습니다.
+```python
+def insertion_sort(arr):
+    for i in range(1, len(arr)):
+        key = arr[i]
+        j = i-1
+        # key보다 큰 원소들은 한 칸씩 뒤로 밀기
+        while j >= 0  and arr[j] > key:
+            arr[j+1] = arr[j]
+            j-=1
+        arr[j+1] = key
+    return arr           
+```
+
+
+example
+  - insertion sort
+  - with input size = n
+
+an algorithm is efficient if, when inplemented, it runs quicklt on real input instances
+- lack of where (enviroment) and how well(performance/accuracy)
+  - bad algorithm can be executed very fast on extremly fast processors
+- lack of the range of real input instance
+  - scale by problem sizes
+   
+worst running time
+polynominal time
+asymptotic order of growth
+computational travtabillity: worst-case running time on inputs of size n, which grows at a rate that is propotional to function f(n)
+
+how to measure
+- count stps(e.g. assinging variable, performing arithemetic operation)
+- 2n^2 + 3n + 2.5stps?
+- meaningless
+- we need representations of the running time growth rate, which insentive to constant factors and lower-order time(2.5 and 3n)
+
+asymptotic upper bounds
+- T(n) : worst-case running time
+- if it is bounded by a constant multiplle f(n)
+  - T(n) = O(f(n))
+  - when c>0 and n0>0, for all n>=n0, T(n)<= c*f(n)
+- E.g. T(n) = pn^2 + qn + r -> O(n^2)
+  - why? how to prove
+
+aymptotic lower bound
+- T(n) is at least constant multiple of f(n)
+- T(n) =  Ω(f(n))
+- when  ϵ > 0 and n0 ≥ 0, for all n ≥ n0, T(n) ≥ ϵ·f(n)
+- T is asymptotically lower-bounede by f
+- T(n) = pn^2 + qn + r -> Ω(n2)
+- T(n) can be Ω(n). it is just a weaker lower bound
+
+ 
+properties of asymptotic growth rates
+
+substitution method
+two steps
+- guess the form of the solution
+- use mathmatical induction to find the constants and show that the solution works
+
+Example
+- T(n) = 2T(n/2) + n
+ (luckily) guess the solution T(n) = O(nlogn)
+- Need to prove T(n) < cnlogn, where c is a constant value, c<0
+- Assume that this bound holds for all positives m <= n
+- When m = n/2
+T(n/2) = c(n/2)lg(n/2) ≤ 2(c(n/2)lg(n/2)) + n
+= cnlg(n/2) + n
+= cn(lgn - lg2) + n ≤ cnlgn - cn + n
+≤ cnlgn
+– Boundary condition
+• for n = 1 → T(n) = c1lg1 = 0, but T(1) = 1 for base case
+• Need to determine the boundary of n
+• If n > n0 and n0 = 2 or 3 → T(2) ≤ c2lg2
+• For any choice of c ≥ 2, the base cases of n = 2 can be hold
