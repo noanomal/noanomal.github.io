@@ -3,7 +3,7 @@ title: 그리스 문자
 parent: 알고리즘 베이직
 nav_order: 2
 ---
-
+## 그리스 문자 마크다운에 작성하기 및  
 수학, 물리학, 공학 등에서는 변수의 이름이나 기호로 그리스 문자를 자주 사용합니다. 따라서 그리스 문자의 모양, 이름, 그리고 입력 방법을 익혀 두는 것이 좋습니다.
 
 마크다운(Markdown)에서는 기본적으로 그리스 알파벳을 직접 지원하지 않지만, 유니코드 문자를 복사하여 붙여넣거나 수학 표현 모드(LaTeX) 또는 HTML 엔티티를 활용하면 문제없이 사용할 수 있습니다.
@@ -104,23 +104,23 @@ $\omega$ $\Omega$
 
 $\alpha$ $A$
 
-$\beta$ $\Beta$
+$\beta$ $B$
 
 $\gamma$ $\Gamma$
 
 $\delta$ $\Delta$
 
-$\epsilon$ $\Epsilon$
+$\epsilon$ $E$
 
-$\zeta$ $\Zeta$
+$\zeta$ $Z$
 
-$\eta$ $\Eta$
+$\eta$ $E$
 
 $\theta$ $\Theta$
 
-$\iota$ $\Iota$
+$\iota$ $I$
 
-$\zeta$ $\Zeta$
+$\zeta$ $K$
 
 $\eta$ $\Eta$
 
@@ -132,9 +132,9 @@ $\kappa$ $\Kappa$
 
 $\lambda$ $\Lambda$
 
-$\mu$ $\Mu$
+$\mu$ $M$
 
-$\nu$ $\Nu$
+$\nu$ $N$
 
 $\xi$ $\Xi$
 
@@ -146,13 +146,13 @@ $\rho$ $\Rho$
 
 $\sigma$ $\Sigma$
 
-$\tau$ $\Tau$
+$\tau$ $T$
 
 $\upsilon$ $\Upsilon$
 
 $\phi$ $\Phi$
 
-$\chi$ $\Chi$
+$\chi$ $X$
 
 $\psi$ $\Psi$
 
