@@ -1,8 +1,9 @@
 ---
 title: 그리스 문자
-parent: 알고리즘 베이직
+parent: 알고리즘 기초
 nav_order: 2
 ---
+
 ## 그리스 문자 24자 정리: 알파벳 순서표, 소문자·대문자 형태, 영어 표기와 한글 발음, 마크다운 및 LaTeX에서 입력하는 방법까지 완벽 가이드
 수학, 물리학, 공학 등에서는 변수의 이름이나 기호로 그리스 문자를 자주 사용합니다. 따라서 그리스 문자의 모양, 이름, 그리고 입력 방법을 익혀 두는 것이 좋습니다.
 
@@ -54,23 +55,15 @@ $\epsilon$ $E$
 
 $\zeta$ $Z$
 
-$\eta$ $E$
+$\eta$ $H$
 
 $\theta$ $\Theta$
 
 $\iota$ $I$
 
-$\zeta$ $K$
+$\kappa$ $K$
 
-$\eta$ $\Eta$
-
-$\theta$ $\Theta$
-
-$\iota$ $\Iota$
-
-$\kappa$ $\Kappa$
-
-$\lambda$ $\Lambda$
+$lambda$ $Lambda$
 
 $\mu$ $M$
 
@@ -78,17 +71,17 @@ $\nu$ $N$
 
 $\xi$ $\Xi$
 
-$\omicron$ $\Omicron$
+$\omicron$ $O$
 
 $\pi$ $\Pi$
 
-$\rho$ $\Rho$
+$\rho$ $P$
 
 $\sigma$ $\Sigma$
 
 $\tau$ $T$
 
-$\upsilon$ $\Upsilon$
+$\upsilon$ $Y$
 
 $\phi$ $\Phi$
 
@@ -114,21 +107,13 @@ $\epsilon$ $E$
 
 $\zeta$ $Z$
 
-$\eta$ $E$
+$\eta$ $H$
 
 $\theta$ $\Theta$
 
 $\iota$ $I$
 
-$\zeta$ $K$
-
-$\eta$ $\Eta$
-
-$\theta$ $\Theta$
-
-$\iota$ $\Iota$
-
-$\kappa$ $\Kappa$
+$\kappa$ $K$
 
 $\lambda$ $\Lambda$
 
@@ -138,17 +123,17 @@ $\nu$ $N$
 
 $\xi$ $\Xi$
 
-$\omicron$ $\Omicron$
+$\omicron$ $O$
 
 $\pi$ $\Pi$
 
-$\rho$ $\Rho$
+$\rho$ $P$
 
 $\sigma$ $\Sigma$
 
 $\tau$ $T$
 
-$\upsilon$ $\Upsilon$
+$\upsilon$ $Y$
 
 $\phi$ $\Phi$
 
