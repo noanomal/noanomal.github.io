@@ -42,25 +42,25 @@ Omega: ω / Ω
 ## 수학 모드(LaTeX) 사용 예 (마크다운에서 수식으로 표시)
 수학 표현을 사용할 수 있는 마크다운 환경(GitHub, Jupyter, Obsidian 등)에서는 아래와 같이 $...$ 안에 LaTeX 문법을 쓰면 그리스 문자를 수식처럼 표현할 수 있습니다.
 ```
-$\alpha$ $\Alpha$
+$\alpha$ $A$
 
-$\beta$ $\Beta$
+$\beta$ $B$
 
 $\gamma$ $\Gamma$
 
 $\delta$ $\Delta$
 
-$\epsilon$ $\Epsilon$
+$\epsilon$ $E$
 
-$\zeta$ $\Zeta$
+$\zeta$ $Z$
 
-$\eta$ $\Eta$
+$\eta$ $E$
 
 $\theta$ $\Theta$
 
-$\iota$ $\Iota$
+$\iota$ $I$
 
-$\zeta$ $\Zeta$
+$\zeta$ $K$
 
 $\eta$ $\Eta$
 
@@ -72,9 +72,9 @@ $\kappa$ $\Kappa$
 
 $\lambda$ $\Lambda$
 
-$\mu$ $\Mu$
+$\mu$ $M$
 
-$\nu$ $\Nu$
+$\nu$ $N$
 
 $\xi$ $\Xi$
 
@@ -86,13 +86,13 @@ $\rho$ $\Rho$
 
 $\sigma$ $\Sigma$
 
-$\tau$ $\Tau$
+$\tau$ $T$
 
 $\upsilon$ $\Upsilon$
 
 $\phi$ $\Phi$
 
-$\chi$ $\Chi$
+$\chi$ $X$
 
 $\psi$ $\Psi$
 
@@ -102,7 +102,7 @@ $\omega$ $\Omega$
 
 마크다운 문법에 위와 같이 작성함면 아래와 같이 표현 됩니다.
 
-$\alpha$ $\Alpha$
+$\alpha$ $A$
 
 $\beta$ $\Beta$
 
